@@ -25,7 +25,7 @@ bl_info = {
 	"version": (0, 1),
 	"blender": (2, 79, 0),
 	"location": "3D View(s) -> Properties Region -> Mesh Display",
-	"warning": "at the current version, the object's rotation needs to be at (0,0,0) in order for the hiding to be oriented properly.",
+	"warning": "at the current version, the object's rotation needs to be at (0,0,0) in order for the hiding features to be oriented properly.",
     "wiki_url": "https://github.com/ChameleonScales/Backface-Hiding",
     "tracker_url": "https://github.com/ChameleonScales/Backface-Hiding/issues",
 	"category": "3D View",
