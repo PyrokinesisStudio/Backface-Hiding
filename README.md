@@ -1,5 +1,5 @@
 # Backface-Hiding
-Blender add-on to hide backfacing geometry
+Blender add-on to hide backfacing or non-visible geometry
 
 ![Backface Hiding screenshot](https://i.imgur.com/XfGYO2Q.png)
 
