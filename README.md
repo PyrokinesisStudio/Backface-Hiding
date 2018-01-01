@@ -1,5 +1,5 @@
 # Backface-Hiding
-Blender add-on to hide backfacing or non-visible geometry
+Blender add-on to hide backfacing or non-visible geometry (useful for retopology with X-Ray mode for example)
 
 ![Backface Hiding screenshot](https://i.imgur.com/XfGYO2Q.png)
 
