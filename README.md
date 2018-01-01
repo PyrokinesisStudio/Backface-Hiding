@@ -9,7 +9,7 @@ Blender add-on to hide backfacing or non-visible geometry (useful for retopology
 
 ## Installing (regular python addon) :
 
-* Save the raw [*Backface Hiding v0-1.py*](https://github.com/ChameleonScales/Backface-Hiding/raw/master/Backface%20Hiding%20v0-1.py) file anywhere on your computer
+* Save the raw [*Backface_Hiding_v0_1.py*](https://raw.githubusercontent.com/ChameleonScales/Backface-Hiding/master/Backface_Hiding_v0_1.py) file anywhere on your computer
 * In Blender, open the User Preferences and go in the “Addons” tab
 * Click on “Install from file” at the bottom
 * Find the addon you downloaded
