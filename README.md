@@ -1,7 +1,7 @@
 # Backface-Hiding
 Blender add-on to hide backfacing or non-visible geometry (useful for retopology with X-Ray mode for example)
 
-![Backface Hiding screenshot](https://i.imgur.com/XfGYO2Q.png)
+![Backface Hiding screenshot](https://i.imgur.com/O0fAeh1.png)
 
 ## Installing (regular python addon) :
 
