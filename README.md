@@ -1,11 +1,12 @@
 # Backface-Hiding
 Blender add-on to hide backfacing or non-visible geometry (useful for retopology with X-Ray mode for example)
 
- Here's a comparison with the built-in Backface Culling :
+Here's a comparison with the built-in Backface Culling :
  
 ![Backface Hiding screenshot](https://i.imgur.com/O0fAeh1.png)
 
 ![](https://raw.githubusercontent.com/ChameleonScales/Blender-individual-icons/master/PNG-16x16/ICON_ERROR.png) **Warning :** This add-on doesn't perform in real-time like Backface Culling, it only updates the hidden geometry every time you click on the button.
+Also, at the current version, if your object is rotated, you will need to either apply or clear the rotation in order for the hiding to be oriented properly.
 
 ## Installing (regular python addon) :
 
