@@ -14,8 +14,8 @@ Also, at the current version, if your object is rotated, you will need to either
 * In Blender, open the User Preferences and go in the “Addons” tab
 * Click on “Install from file” at the bottom
 * Find the addon you downloaded
-* Enable it by checking the box in the Addons list
-* Now you should find the buttons in the Properties region of any 3DView in Edit mode, under Mesh Display.
+* Enable it with the checkbox
+* You should now find the buttons in the Properties region of any 3DView in Edit mode, under Mesh Display.
 
 ## All current features :
 
