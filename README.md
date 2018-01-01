@@ -16,3 +16,7 @@ Blender add-on to hide backfacing or non-visible geometry
 
 * **Hide backfacing :** hides the backfacing geometry (can be revealed with Alt+H)
 * **Hide non-visible :** hides the geometry that's occluded by the view, including the screen area outside of the 3DView editor.
+
+## TODO list :
+
+* Make it work on rotated objects
