@@ -25,3 +25,5 @@ Also, at the current version, if your object is rotated, you will need to either
 ## TODO list :
 
 * Make it work on rotated objects
+
+This addon was made on Blender 2.79
