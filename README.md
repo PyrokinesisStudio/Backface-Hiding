@@ -1,6 +1,8 @@
 # Backface-Hiding
 Blender add-on to hide backfacing geometry
 
+![Backface Hiding screenshot](https://i.imgur.com/XfGYO2Q.png)
+
 ## Installing (regular python addon) :
 
 * Save the raw [*Backface Hiding v0-1.py*](https://github.com/ChameleonScales/Backface-Hiding/raw/master/Backface%20Hiding%20v0-1.py) file anywhere on your computer
