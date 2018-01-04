@@ -173,8 +173,6 @@ def displayBackfaceHidingPanel(self, context):
 	
 
 def register():
-	#bpy.utils.register_class(HideBackfacingOperator)
-	#bpy.utils.register_class(HideNonVisibleOperator)
 	bpy.utils.register_module(__name__)
 	bpy.types.VIEW3D_PT_view3d_meshdisplay.append(displayBackfaceHidingPanel)
 
@@ -182,6 +180,7 @@ def register():
 
 def unregister():
 	bpy.utils.unregister_module(__name__)
+	bpy.types.VIEW3D_PT_view3d_meshdisplay.remove(displayBackfaceHidingPanel)
 	
 
 if __name__ == "__main__":
