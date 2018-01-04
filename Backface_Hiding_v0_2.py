@@ -22,7 +22,7 @@ bl_info = {
 	"name": "Backface hiding",
 	"description": "button to Hide backfacing geometry in Edit mode",
 	"author": "Caetano VeyssiÃšres (ChameleonScales)",
-	"version": (0, 1),
+	"version": (0, 2),
 	"blender": (2, 79, 0),
 	"location": "3D View(s) -> Properties Region -> Mesh Display",
 	"warning": "at the current version, the object's rotation needs to be at (0,0,0) in order for the hiding features to be oriented properly.",
@@ -34,6 +34,10 @@ bl_info = {
 import bpy
 import bmesh
 from mathutils import Vector
+from bpy.props import BoolProperty
+from bpy.types import AddonPreferences, PropertyGroup
+#from bpy.types import Menu, Header
+import rna_keymap_ui
 
 handle = []
 bm_old = [None]
@@ -164,23 +168,112 @@ class HideNonVisibleOperator(bpy.types.Operator):
 		
 		return {'FINISHED'}
 
+# Preferences            
+class AddonPreferences(bpy.types.AddonPreferences):
+	bl_idname = __name__
+    
+	use_backface_hiding = BoolProperty(
+			name="Use Pie Menu", 
+			default=True
+			)
+
 def displayBackfaceHidingPanel(self, context):
 
 	if context.active_object and context.active_object.type == 'MESH':
 		box = self.layout.box()
 		box.operator("object.hide_backfacing", text="Hide backfacing", icon='VISIBLE_IPO_OFF')
 		box.operator("object.hide_non_visible", text="Hide non-visible", icon='ORTHO')
+
+		# Hotkey layout :
+		if self.use_backface_hiding :
+			split = box.split()
+			col = split.column()       
+			col.label('Setup backface hiding Hotkey')
+			col.separator()
+
+			col.label('Setup Hotkey')
+			col.separator()
+			wm = bpy.context.window_manager
+			kc = wm.keyconfigs.user
+			km = kc.keymaps['3D View Generic']
+			kmi = get_hotkey_entry_item(km, 'object.hide_backfacing', 'object.hide_backfacing')
+			if kmi:
+				col.context_pointer_set("keymap", km)
+				rna_keymap_ui.draw_kmi([], kc, km, kmi, col, 0)
+			else:
+				col.label("No hotkey entry found")
+				col.operator(SpeedRetopoAddHotkey.bl_idname, text = "Add hotkey entry", icon = 'ZOOMIN')
+				
+				
+				row = box.row(align=True)
+				row.label("Save preferences to apply these settings", icon='ERROR')
 	
+addon_keymaps = [] 
+         
+
+def get_hotkey_entry_item(km, kmi_name, kmi_value):
+	'''
+	returns hotkey of specific type, with specific properties.name (keymap is not a dict, so referencing by keys is not enough
+	if there are multiple hotkeys!)
+	'''
+	for i, km_item in enumerate(km.keymap_items):
+		if km.keymap_items.keys()[i] == kmi_name:
+			if km.keymap_items[i].properties.name == kmi_value:
+				return km_item
+	return None
+
+def add_hotkey():
+	user_preferences = bpy.context.user_preferences
+	addon_prefs = user_preferences.addons[__name__].preferences
+	
+	wm = bpy.context.window_manager
+	kc = wm.keyconfigs.addon 
+	km = kc.keymaps.new(name="Hide backfacing", space_type='VIEW_3D', region_type='WINDOW')  
+	kmi = km.keymap_items.new("object.hide_backfacing",'Q', 'PRESS')     
+	#kmi.properties.name = "view3d.hide_backfacing"                           
+	kmi.active = True
+	addon_keymaps.append((km, kmi))
+
+
+class BackfaceHidingAddHotkey(bpy.types.Operator):
+	''' Add hotkey entry '''
+	bl_idname = "backfaceHiding.add_hotkey"
+	bl_label = "Addon Preferences Example"
+	bl_options = {'REGISTER', 'INTERNAL'}
+
+	def execute(self, context):
+		add_hotkey()
+
+		self.report({'INFO'}, "Hotkey added in User Preferences -> Input -> 3DView -> Mesh")
+		return {'FINISHED'}
+    
+    
+def remove_hotkey():
+    ''' clears all addon level keymap hotkeys stored in addon_keymaps '''
+    wm = bpy.context.window_manager
+    kc = wm.keyconfigs.addon
+    km = kc.keymaps['3D View Generic']
+    
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+        wm.keyconfigs.addon.keymaps.remove(km)
+    addon_keymaps.clear()
 
 def register():
 	bpy.utils.register_module(__name__)
 	bpy.types.VIEW3D_PT_view3d_meshdisplay.append(displayBackfaceHidingPanel)
 
+	# hotkey setup
+	add_hotkey()
 	
 
 def unregister():
 	bpy.utils.unregister_module(__name__)
 	bpy.types.VIEW3D_PT_view3d_meshdisplay.remove(displayBackfaceHidingPanel)
+
+	# hotkey cleanup
+	remove_hotkey()
+
 	
 
 if __name__ == "__main__":
