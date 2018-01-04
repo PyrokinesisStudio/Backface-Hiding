@@ -1,7 +1,7 @@
 # ##### BEGIN GPL LICENSE BLOCK #####
 #
 # Backface Hiding hides backfacing or non-visible geometry in Edit mode.
-# Copyright (C) 2018 Caetano Veyssières
+# Copyright (C) 2018 Caetano VeyssiÃšres
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 bl_info = {
 	"name": "Backface hiding",
 	"description": "button to Hide backfacing geometry in Edit mode",
-	"author": "Caetano Veyssières (ChameleonScales)",
+	"author": "Caetano VeyssiÃšres (ChameleonScales)",
 	"version": (0, 1),
 	"blender": (2, 79, 0),
 	"location": "3D View(s) -> Properties Region -> Mesh Display",
@@ -173,19 +173,14 @@ def displayBackfaceHidingPanel(self, context):
 	
 
 def register():
+	#bpy.utils.register_class(HideBackfacingOperator)
+	#bpy.utils.register_class(HideNonVisibleOperator)
 	bpy.utils.register_module(__name__)
-
 	bpy.types.VIEW3D_PT_view3d_meshdisplay.append(displayBackfaceHidingPanel)
 
 	
 
 def unregister():
-	bpy.types.VIEW3D_PT_view3d_meshdisplay.remove(displayBackfaceHidingPanel)
-	del bpy.types.Object.hide_backfacing
-	del bpy.types.Object.hide_non_visible
-	if handle:
-		bpy.types.SpaceView3D.draw_handler_remove(handle[0], 'WINDOW')
-		handle[:] = []
 	bpy.utils.unregister_module(__name__)
 	
 
