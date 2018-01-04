@@ -17,10 +17,15 @@ Also, at the current version, if your object is rotated, you will need to either
 * Enable it with the checkbox
 * You should now find the buttons in the Properties region of any 3DView in Edit mode, under Mesh Display.
 
-## All current features :
+## Features :
 
 * **Hide backfacing :** hides the backfacing geometry (can be revealed with Alt+H)
 * **Hide non-visible :** hides the geometry that's occluded by the view, including the screen area outside of the 3DView editor.
+
+## Add keyboard shortcuts :
+
+Go in User Preferencess > Input > 3DView > Mesh, click on "Add New", expand the added one (called "None"), in the text field type `object.hide_backfacing` and chose your keys. One that is not already used is Q.
+For the "Hide non-visible" button the operator is `object.hide_non_visible` and another non-used key is D.
 
 ## TODO list :
 
